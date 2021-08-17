@@ -11,7 +11,7 @@ public class Timesheet {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User Employee;
+    private User employee;
 
     private String payCode;
 
@@ -117,6 +117,9 @@ public class Timesheet {
 
     private Date date;
 
+    public Timesheet() {
+    }
+
 
     public long getId() {
         return id;
@@ -126,13 +129,7 @@ public class Timesheet {
         this.id = id;
     }
 
-    public com.example.springboot_security403.User getEmployee() {
-        return Employee;
-    }
 
-    public void setEmployee(com.example.springboot_security403.User employee) {
-        Employee = employee;
-    }
 
     public String getPayCode() {
         return payCode;
@@ -516,6 +513,23 @@ public class Timesheet {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public com.example.springboot_security403.User getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(com.example.springboot_security403.User employee) {
+        this.employee = employee;
+    }
+
+    public double calcHours() {
+
+        double regularTotal = regularMonday + regularTuesday + regularWednesday + regularThursday + regularFriday;
+        double annualLeaveTotal = annualLeaveMonday + annualLeaveTuesday + annualLeaveThursday + annualLeaveWednesday + annualLeaveFriday;
+        double compTimeUsedTotal = compTimeUsedMonday + compTimeUsedTuesday + compTimeUsedWednesday + compTimeUsedThursday + compTimeUsedFriday;
+
+        return 5;
     }
 }
 

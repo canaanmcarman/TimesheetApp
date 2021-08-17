@@ -18,6 +18,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Timesheet> timesheets;
+
     @Column(name = "username")
     @Size(min = 3)
     private String username;
@@ -42,9 +45,6 @@ public class User {
 
     @Column(name = "enabled")
     private boolean enabled;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Timesheet> timesheets;
 
     public User() {
     }
