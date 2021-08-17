@@ -25,6 +25,9 @@ public class HomeController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    EmailService emailService;
+
     @RequestMapping("/")
     public String index() {
         return "index";
