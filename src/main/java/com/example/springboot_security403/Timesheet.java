@@ -1,9 +1,12 @@
 package com.example.springboot_security403;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "timesheet")
 public class Timesheet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,114 +14,154 @@ public class Timesheet {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User employee;
+    private User Employee;
 
     private String payCode;
 
     //monday
+    @Column(name = "regular_monday")
     private double regularMonday;
 
+    @Column(name = "leavewithoutpaymonday")
     private double leaveWithoutPayMonday;
 
+    @Column(name = "annualleavemonday")
     private double annualLeaveMonday;
 
+    @Column(name = "comptimemonday")
     private double compTimeEarnedMonday;
 
+    @Column(name = "comptimeusedmonday")
     private double compTimeUsedMonday;
 
+    @Column(name = "holidaymonday")
     private double holidayMonday;
 
+    @Column(name = "holidayworkedmonday")
     private double holidayWorkedMonday;
-
+    
+    @Column(name = "regularovertimemonday")
     private double regularOvertimeMonday;
 
+    @Column(name = "holidayrovertimemonday")
     private double holidayOvertimeMonday;
 
     //tuesday
-
+    @Column(name = "regular_tuesday")
     private double regularTuesday;
 
+    @Column(name = "leavewithoutpaytuesday")
     private double leaveWithoutPayTuesday;
 
+    @Column(name = "annualleavetuesday")
     private double annualLeaveTuesday;
 
+    @Column(name = "comptimeearnedtuesday")
     private double compTimeEarnedTuesday;
 
+    @Column(name = "comptimeusedtuesday")
     private double compTimeUsedTuesday;
 
+    @Column(name = "holidaytuesday")
     private double holidayTuesday;
 
+    @Column(name = "holidayworedtuesday")
     private double holidayWorkedTuesday;
 
+    @Column(name = "regularovertimetuesday")
     private double regularOvertimeTuesday;
 
+    @Column(name = "holidayovertimetuesday")
     private double holidayOvertimeTuesday;
 
     //weds
-
+    @Column(name = "regular_wednesday")
     private double regularWednesday;
 
+    @Column(name = "leavewithoutpaywednesday")
     private double leaveWithoutPayWednesday;
 
+    @Column(name = "annualleavewednesday")
     private double annualLeaveWednesday;
 
+    @Column(name = "comptimeearnedpaywednesday")
     private double compTimeEarnedWednesday;
 
+    @Column(name = "comptimeusedwednesday")
     private double compTimeUsedWednesday;
 
+    @Column(name = "holidaywednesday")
     private double holidayWednesday;
 
+    @Column(name = "holidayworkedwednesday")
     private double holidayWorkedWednesday;
 
+    @Column(name = "regularovertimewednesday")
     private double regularOvertimeWednesday;
 
+    @Column(name = "holidayovertimewednesday")
     private double holidayOvertimeWednesday;
 
     //thurs
+    @Column(name = "regular_thursday")
     private double regularThursday;
 
+    @Column(name = "leavewithoutpaythursday")
     private double leaveWithoutPayThursday;
 
+    @Column(name = "annualleavethursday")
     private double annualLeaveThursday;
 
+    @Column(name = "comptimeearnedthursday")
     private double compTimeEarnedThursday;
 
+    @Column(name = "comptimeusedthursday")
     private double compTimeUsedThursday;
 
+    @Column(name = "holidaythursday")
     private double holidayThursday;
 
+    @Column(name = "holidayworkedthursday")
     private double holidayWorkedThursday;
 
+    @Column(name = "regularoverthursday")
     private double regularOvertimeThursday;
 
+    @Column(name = "holidayovertimethursday")
     private double holidayOvertimeThursday;
 
     //friday
+    @Column(name = "regular_friday")
     private double regularFriday;
 
+    @Column(name = "leavewithoutpayfriday")
     private double leaveWithoutPayFriday;
 
+    @Column(name = "annualleavefriday")
     private double annualLeaveFriday;
 
+    @Column(name = "comptimeearnedfriday")
     private double compTimeEarnedFriday;
 
+    @Column(name = "comptimeusedfriday")
     private double compTimeUsedFriday;
 
+    @Column(name = "holidayfriday")
     private double holidayFriday;
 
+    @Column(name = "holidayworkedfriday")
     private double holidayWorkedFriday;
 
+    @Column(name = "regularovertimefriday")
     private double regularOvertimeFriday;
 
+    @Column(name = "holidayoverfriday")
     private double holidayOvertimeFriday;
 
 
     private double weekTotal;
 
     private Date date;
-
-    public Timesheet() {
-    }
 
 
     public long getId() {
@@ -129,7 +172,13 @@ public class Timesheet {
         this.id = id;
     }
 
+    public com.example.springboot_security403.User getEmployee() {
+        return Employee;
+    }
 
+    public void setEmployee(com.example.springboot_security403.User employee) {
+        Employee = employee;
+    }
 
     public String getPayCode() {
         return payCode;
@@ -514,23 +563,8 @@ public class Timesheet {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    public com.example.springboot_security403.User getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(com.example.springboot_security403.User employee) {
-        this.employee = employee;
-    }
-
-    public double calcHours() {
-
-        double regularTotal = regularMonday + regularTuesday + regularWednesday + regularThursday + regularFriday;
-        double annualLeaveTotal = annualLeaveMonday + annualLeaveTuesday + annualLeaveThursday + annualLeaveWednesday + annualLeaveFriday;
-        double compTimeUsedTotal = compTimeUsedMonday + compTimeUsedTuesday + compTimeUsedWednesday + compTimeUsedThursday + compTimeUsedFriday;
-
-        return 5;
-    }
 }
+
+
 
 
