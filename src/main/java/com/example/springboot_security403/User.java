@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_table")
@@ -17,8 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Timesheet> timesheets;
+
     @Column(name = "username")
-    @Size(min=3)
+    @Size(min = 3)
     private String username;
 
     @Column(name = "email")
@@ -29,7 +33,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     @NotEmpty
     @NotNull
     private String firstName;
@@ -46,7 +50,7 @@ public class User {
     }
 
 
-    public User(@Size(min=3) String username, @NotEmpty @NotNull String email, @NotEmpty @NotNull String password, @NotEmpty @NotNull String firstName, @NotEmpty @NotNull String lastName, boolean enabled) {
+    public User(@Size(min = 3) String username, @NotEmpty @NotNull String email, @NotEmpty @NotNull String password, @NotEmpty @NotNull String firstName, @NotEmpty @NotNull String lastName, boolean enabled) {
         this.username = username;
         this.email = email;
         this.setPassword(password);
@@ -117,5 +121,14 @@ public class User {
         this.password = "";
     }
 
+    public Set<Timesheet> getTimesheets() {
+        return timesheets;
+    }
+
+    public void setTimesheets(Set<Timesheet> timesheets) {
+        this.timesheets = timesheets;
+    }
 }
+
+
 
