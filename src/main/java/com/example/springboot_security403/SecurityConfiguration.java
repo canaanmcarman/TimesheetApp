@@ -26,13 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login?logout=true").permitAll();
 
-//                .antMatchers("/teacher").hasRole("ADMIN")
-//                .antMatchers("/student").hasRole("USER")
-//                .antMatchers("/**").hasAnyRole("ADMIN","USER")
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll();
+
 
         httpSecurity.csrf().ignoringAntMatchers("/h2-console/**");
         httpSecurity.headers().frameOptions().sameOrigin();

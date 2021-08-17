@@ -1,7 +1,6 @@
 package com.example.springboot_security403;
 
 
-import net.bytebuddy.implementation.bind.annotation.Empty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -10,33 +9,32 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="user_table")
+@Table(name = "user_table")
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
-    @Column(name="username") //collomun name
+    @Column(name = "username")
     @Size(min=3)
     private String username;
 
-
-    @Column(name="email")
+    @Column(name = "email")
     @NotEmpty
     @NotNull
     private String email;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "first_name")
+    @Column(name="first_name")
     @NotEmpty
     @NotNull
     private String firstName;
 
-    @Column(name= "last_name")
+    @Column(name = "last_name")
     @NotEmpty
     @NotNull
     private String lastName;
@@ -44,16 +42,11 @@ public class User {
     @Column(name = "enabled")
     private boolean enabled;
 
-    public User(){
-
+    public User() {
     }
 
-    public User(@Size(min=3) @Empty @NotNull String username,
-                @Empty @NotNull String email,
-                String password,
-                @Empty @NotNull String firstName,
-                @Empty @NotNull String lastName,
-                boolean enabled) {
+
+    public User(@Size(min=3) String username, @NotEmpty @NotNull String email, @NotEmpty @NotNull String password, @NotEmpty @NotNull String firstName, @NotEmpty @NotNull String lastName, boolean enabled) {
         this.username = username;
         this.email = email;
         this.setPassword(password);
@@ -61,8 +54,6 @@ public class User {
         this.lastName = lastName;
         this.enabled = enabled;
     }
-
-
 
     public long getId() {
         return id;
@@ -110,8 +101,7 @@ public class User {
     }
 
     public void setLastName(String lastName) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
+        this.lastName = lastName;
     }
 
     public boolean isEnabled() {
@@ -122,4 +112,10 @@ public class User {
         this.enabled = enabled;
     }
 
+
+    public void clearPassword() {
+        this.password = "";
+    }
+
 }
+

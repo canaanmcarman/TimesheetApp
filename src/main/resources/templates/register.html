@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<div class="container">
+    <h4>New User Registration</h4>
+    <form autocomplete="off" th:action="@{/processregister}" th:object="${user}"    method="post">
+        First name <br><input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}">
+        <mark>
+            <strong>
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            </strong>
+        </mark> <br>
+
+        Last Name<br> <input type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}">
+        <mark><strong><span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span></strong></mark><br>
+
+        Email<br> <input type="text" id="email" placeholder="email@domail.com" th:field="*{email}">
+        <mark><strong><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></strong></mark><br>
+
+        Username<br> <input type="text" id="username" placeholder="Username" th:field="*{username}">
+        <mark><strong><span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span></strong></mark><br>
+
+        Password<br> <input type="password" id="password" placeholder="password" th:field="*{password}">
+        <mark><strong><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span></strong></mark><br>
+        <br>
+        <input type="submit" value="submit">
+
+
+
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
