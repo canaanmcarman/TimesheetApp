@@ -5,13 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.sql.Time;
 
 @Controller
 public class HomeController {
@@ -34,20 +32,31 @@ public class HomeController {
 
     @GetMapping("/addtimesheet")
     public String addTimesheet(Model model) {
+        model.addAttribute("timesheet", new Timesheet());
 
         return "timesheetform";
     }
 
     @PostMapping("/processtimesheet")
-    public String processTimesheet(Model model) {
-
-        return "index";
+    public String processTimesheet(@Valid Timesheet timesheet, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "timesheetform";
+        }
+        timesheetRepository.save(timesheet);
+        model.addAttribute("timesheet", timesheet);
+        return "timesheet";
     }
 
-    @RequestMapping("/viewtimesheet")
-    public String viewTimesheet() {
-
+    @RequestMapping("/timesheet/{id}")
+    public String viewTimesheet(@PathVariable("id") long id, Model model) {
+        model.addAttribute("timesheet", timesheetRepository.findById(id).get());
         return "timesheet";
+    }
+
+    @RequestMapping("/edittimesheet/{id}")
+    public String editTimesheet(@PathVariable("id") long id, Model model) {
+        model.addAttribute("timesheet", timesheetRepository.findById(id).get());
+        return "timesheetform";
     }
 
 
@@ -99,6 +108,18 @@ public class HomeController {
             roleRepository.save(role);
         }
         return "redirect:/login";
+    }
+
+
+    @RequestMapping("/approvetimesheet")
+    public String approveTimesheet() {
+        return "index";
+    }
+
+    @RequestMapping("/rejecttimesheet")
+    public String rejectTimesheet() {
+
+        return "index";
     }
 
 }

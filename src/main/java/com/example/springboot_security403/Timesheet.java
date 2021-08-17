@@ -33,7 +33,25 @@ public class Timesheet {
 
     private double holidayOvertime;
 
+    private double total;
+
     private Date date;
+
+    public Timesheet() {
+        this.payCode = "";
+
+        this.regular = 0;
+
+        this.leaveWithoutPay = 0;
+
+        this.annualLeave = 0;
+        this.compTimeEarned = 0;
+        this.compTimeUsed = 0;
+        this.holiday = 0;
+        this.holidayWorked = 0;
+        this.regularOvertime = 0;
+        this.holidayOvertime = 0;
+    }
 
     public long getId() {
         return id;
@@ -137,6 +155,15 @@ public class Timesheet {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }
 
