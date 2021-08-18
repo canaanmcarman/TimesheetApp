@@ -54,13 +54,15 @@ public class HomeController {
 
 
     @PostMapping("/savetimesheet")
-    public String saveTimesheet(@ModelAttribute Timesheet timesheet, Model model) {
+    public String saveTimesheet(@ModelAttribute Timesheet timesheet, Model model, Principal principal) {
         timesheet.setStage("edit");
 //        Action action = new Action();
 //        LocalDate date = LocalDate.now();
 //        action.setDate(date);
 //        actionRepository.save(action);
         timesheet.calcWeekPay(20.0);
+        String username = principal.getName();
+        timesheet.setEmployee(userRepository.findByUsername(username));
         timesheetRepository.save(timesheet);
         model.addAttribute("timesheet", timesheet);
         return "testtable";
