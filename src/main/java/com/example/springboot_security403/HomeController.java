@@ -63,7 +63,7 @@ public class HomeController {
         timesheet.calcWeekPay(20.0);
         timesheetRepository.save(timesheet);
         model.addAttribute("timesheet", timesheet);
-        return "timesheetform2";
+        return "testtable";
     }
 
     @RequestMapping("/timesheet/{id}")

@@ -19,8 +19,8 @@ public class Action {
 
     private String actionName;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd")
-    private LocalDate date;
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd")
+//    private LocalDate date;
 
     public long getId() {
         return id;
@@ -46,11 +46,4 @@ public class Action {
         this.actionName = actionName;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 }
