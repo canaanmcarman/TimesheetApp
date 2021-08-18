@@ -606,7 +606,10 @@ public class Timesheet {
         return 0;
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> f88b14b02eb3074243740f71613cf179ed33a6e9
     public String getStage() {
         return stage;
     }
@@ -653,6 +656,10 @@ public class Timesheet {
 
     public void setHolidayFriday(boolean holidayFriday) {
         this.holidayFriday = holidayFriday;
+<<<<<<< HEAD
+
+=======
+>>>>>>> f88b14b02eb3074243740f71613cf179ed33a6e9
     }
 }
 
