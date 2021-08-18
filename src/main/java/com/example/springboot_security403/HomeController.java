@@ -123,6 +123,13 @@ public class HomeController {
         return "redirect:/login";
     }
 
+    @RequestMapping("/viewall")
+    public String viewAll(Model model) {
+        model.addAttribute("timesheets", timesheetRepository.findAll());
+
+        return "queue";
+    }
+
     @GetMapping("/sendApprovedEmail")
     public String sendApprovedEmail(){
         emailService.SendTemplatedEmail("your timesheet is approved");

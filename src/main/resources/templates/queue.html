@@ -23,16 +23,7 @@
                             <th scope="col">Timesheet</th>
                             <th scope="col">Week Salary</th>
                             <th scope="col">Total Hours</th>
-                            <th scope="col">Date
-                                <select th:field="*{date}" class="custom-select">
-                                    <option th:each="date:${dates}" th:text="${timesheet.date}"></option>
-                                </select>
-                            </th>
-                            <th scope="col">Stage
-                                <select th:field="*{stage}" class="custom-select">
-                                    <option th:each="stage:${stages}" th:text="${timesheet.stage}"></option>
-                                </select>
-                            </th>
+                            <th scope="col">Stage</th>
                         </tr>
                     </thread>
                     <tbody>
@@ -40,7 +31,6 @@
                         <td th:inline="text">[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</td>
                         <td th:inline="text"><a th:href="@{/timesheet/{id}(id=${timesheet.id})}">Timesheet</a></td>
                         <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
-                        <td th:inline="text">[[${timesheet.date}]]</td>
                         <td th:inline="text">[[${timesheet.totalHours}]]</td>
                         <td th:inline="text">[[${timesheet.stage}]]</td>
                         <td>
