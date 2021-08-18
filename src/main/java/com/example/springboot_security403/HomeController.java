@@ -1,6 +1,5 @@
 package com.example.springboot_security403;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.sql.Time;
+
 
 @Controller
 public class HomeController {
@@ -63,18 +62,12 @@ public class HomeController {
     }
 
 
-
-
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model){
         String username = principal.getName();
         model.addAttribute("user", userRepository.findByUsername(username));
         return "secure";
     }
-
-
-
-
 
     @RequestMapping("/login")
     public String login(){
@@ -113,7 +106,16 @@ public class HomeController {
         return "redirect:/login";
     }
 
-
+    @GetMapping("/sendApprovedEmail")
+    public String sendApprovedEmail(){
+        emailService.SendTemplatedEmail("your timesheet is approved");
+        return "success";
+    }
+    @GetMapping("/sendRejectEmail")
+    public String sendRejectEmail(){
+        emailService.SendSimpleEmail("your timesheet is rejected", "timesheet");
+        return "success";
+    }
     @RequestMapping("/approvetimesheet")
     public String approveTimesheet() {
         return "index";
