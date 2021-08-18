@@ -46,11 +46,4 @@ public class Action {
         this.actionName = actionName;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 }
