@@ -10,7 +10,7 @@ public class Action {
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "employee_id")
     private User employee;
 
     private String actionName;

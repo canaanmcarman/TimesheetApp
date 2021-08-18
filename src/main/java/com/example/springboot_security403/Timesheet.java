@@ -525,11 +525,28 @@ public class Timesheet {
 
     public double calcHours() {
 
-        double regularTotal = regularMonday + regularTuesday + regularWednesday + regularThursday + regularFriday;
-        double annualLeaveTotal = annualLeaveMonday + annualLeaveTuesday + annualLeaveThursday + annualLeaveWednesday + annualLeaveFriday;
-        double compTimeUsedTotal = compTimeUsedMonday + compTimeUsedTuesday + compTimeUsedWednesday + compTimeUsedThursday + compTimeUsedFriday;
+        double salary = 20.0;
 
-        return 5;
+
+        double regular = regularMonday + regularTuesday + regularWednesday + regularThursday + regularFriday;
+        double annualLeave = annualLeaveMonday + annualLeaveTuesday + annualLeaveThursday + annualLeaveWednesday + annualLeaveFriday;
+        double holidayWorked = holidayWorkedMonday + holidayWorkedTuesday + holidayWorkedWednesday + holidayWorkedThursday + holidayWorkedFriday;
+        double holidayOvertime = holidayOvertimeMonday + holidayOvertimeTuesday + holidayOvertimeWednesday + holidayOvertimeThursday + holidayOvertimeFriday;
+        double regularOvertime = regularOvertimeMonday + regularOvertimeTuesday + regularOvertimeWednesday + regularOvertimeThursday + regularOvertimeFriday;
+
+        //convert hours into money
+        regular = regular * salary;
+        regularOvertime = regularOvertime * salary * 1.5;
+        holidayWorked = holidayWorked * salary * 1.5;
+        holidayOvertime = holidayOvertime * salary * 2.0;
+        annualLeave = annualLeave * salary;
+
+        weekTotal = regular + regularOvertime + holidayWorked + holidayOvertime + annualLeave;
+
+
+
+
+        return weekTotal;
     }
 }
 
