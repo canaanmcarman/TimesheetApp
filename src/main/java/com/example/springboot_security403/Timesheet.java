@@ -136,6 +136,7 @@ public class Timesheet {
     private double totalHours = regular + annualLeave + holidayWorked + holidayOvertime + regularOvertime;
 
 
+
     public Timesheet() {
 
     }
@@ -605,6 +606,7 @@ public class Timesheet {
         return 0;
     }
 
+<<<<<<< HEAD
     public String getStage() {
         return stage;
     }
@@ -651,6 +653,11 @@ public class Timesheet {
 
     public void setHolidayFriday(boolean holidayFriday) {
         this.holidayFriday = holidayFriday;
+=======
+
+
+        return weekTotal;
+>>>>>>> 67cc11fefe532a9477d74d909ed540a2cebbc522
     }
 }
 
