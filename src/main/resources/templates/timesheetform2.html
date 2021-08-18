@@ -8,10 +8,11 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<form th:action="@{/savetimesheet}" method="post" th:object="${timesheet}">
+<form th:action="@{/timesheetapproval}" method="post" th:object="${timesheet}">
     <input type="hidden" th:field="*{id}">
     <input type="hidden" th:field="*{stage}">
     <input type="hidden" th:field="*{employee}">
+    <input type="hidden" th:field="*{date}">
     <input type="hidden" th:field="*{payCode}">
     <input type="hidden" th:field="*{weekTotal}">
 
@@ -121,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <input class="table" type="submit" value="save" Style="color: white; background-color:navy; border-color: black;"/>
+        <input class="table" type="submit" value="Submit for approval" Style="color: white; background-color:navy; border-color: black;"/>
     </div>
 
 

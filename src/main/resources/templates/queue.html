@@ -20,9 +20,9 @@
             </tr>
         </thread>
         <tbody>
-        <tr th:each="timesheet:{timesheets}">
+        <tr th:each="timesheet: ${timesheets}">
             <td th:inline="text">[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</td>
-            <td th:text="${timesheet.total}"></td>
+            <td th:text="${timesheet.weekTotal}"></td>
             <td>
                 <a th:href="@{/timesheet/{id}(id=${timesheet.id})}"></a>
             </td>

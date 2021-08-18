@@ -1,6 +1,9 @@
 package com.example.springboot_security403;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,8 +18,18 @@ public class Timesheet {
 
     private String payCode;
 
+    private double weekTotal;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd")
+    private LocalDate date;
+
+    private String stage;  //create, edit, pending approval, Approved
+
+
     //monday
     private double regularMonday;
+
+    private double regularOvertimeMonday;
 
     private double leaveWithoutPayMonday;
 
@@ -26,11 +39,11 @@ public class Timesheet {
 
     private double compTimeUsedMonday;
 
-    private double holidayMonday;
+    private boolean holidayMonday;
 
     private double holidayWorkedMonday;
 
-    private double regularOvertimeMonday;
+
 
     private double holidayOvertimeMonday;
 
@@ -46,7 +59,7 @@ public class Timesheet {
 
     private double compTimeUsedTuesday;
 
-    private double holidayTuesday;
+    private boolean holidayTuesday;
 
     private double holidayWorkedTuesday;
 
@@ -66,7 +79,7 @@ public class Timesheet {
 
     private double compTimeUsedWednesday;
 
-    private double holidayWednesday;
+    private boolean holidayWednesday;
 
     private double holidayWorkedWednesday;
 
@@ -85,7 +98,7 @@ public class Timesheet {
 
     private double compTimeUsedThursday;
 
-    private double holidayThursday;
+    private boolean holidayThursday;
 
     private double holidayWorkedThursday;
 
@@ -104,7 +117,7 @@ public class Timesheet {
 
     private double compTimeUsedFriday;
 
-    private double holidayFriday;
+    private boolean holidayFriday;
 
     private double holidayWorkedFriday;
 
@@ -112,13 +125,82 @@ public class Timesheet {
 
     private double holidayOvertimeFriday;
 
+    //total
+    private double regular;
+    private double annualLeave;
+    private double holidayWorked;
+    private double holidayOvertime;
+    private double regularOvertime;
+    private double compTimeEarned;
 
-    private double weekTotal;
+    private double totalHours = regular + annualLeave + holidayWorked + holidayOvertime + regularOvertime;
 
-    private Date date;
 
     public Timesheet() {
+
     }
+
+
+
+    public double getCompTimeEarned() {
+        return compTimeEarned;
+    }
+
+    public void setCompTimeEarned(double compTimeEarned) {
+        this.compTimeEarned = compTimeEarned;
+    }
+
+
+
+    public double getRegular() {
+        return regular;
+    }
+
+    public void setRegular(double regular) {
+        this.regular = regular;
+    }
+
+    public double getAnnualLeave() {
+        return annualLeave;
+    }
+
+    public void setAnnualLeave(double annualLeave) {
+        this.annualLeave = annualLeave;
+    }
+
+    public double getHolidayWorked() {
+        return holidayWorked;
+    }
+
+    public void setHolidayWorked(double holidayWorked) {
+        this.holidayWorked = holidayWorked;
+    }
+
+    public double getHolidayOvertime() {
+        return holidayOvertime;
+    }
+
+    public void setHolidayOvertime(double holidayOvertime) {
+        this.holidayOvertime = holidayOvertime;
+    }
+
+    public double getRegularOvertime() {
+        return regularOvertime;
+    }
+
+    public void setRegularOvertime(double regularOvertime) {
+        this.regularOvertime = regularOvertime;
+    }
+
+    public double getTotalHours() {
+        return totalHours;
+    }
+
+    public void setTotalHours(double totalHours) {
+        this.totalHours = totalHours;
+    }
+
+
 
 
     public long getId() {
@@ -179,13 +261,6 @@ public class Timesheet {
         this.compTimeUsedMonday = compTimeUsedMonday;
     }
 
-    public double getHolidayMonday() {
-        return holidayMonday;
-    }
-
-    public void setHolidayMonday(double holidayMonday) {
-        this.holidayMonday = holidayMonday;
-    }
 
     public double getHolidayWorkedMonday() {
         return holidayWorkedMonday;
@@ -251,13 +326,7 @@ public class Timesheet {
         this.compTimeUsedTuesday = compTimeUsedTuesday;
     }
 
-    public double getHolidayTuesday() {
-        return holidayTuesday;
-    }
 
-    public void setHolidayTuesday(double holidayTuesday) {
-        this.holidayTuesday = holidayTuesday;
-    }
 
     public double getHolidayWorkedTuesday() {
         return holidayWorkedTuesday;
@@ -323,13 +392,6 @@ public class Timesheet {
         this.compTimeUsedWednesday = compTimeUsedWednesday;
     }
 
-    public double getHolidayWednesday() {
-        return holidayWednesday;
-    }
-
-    public void setHolidayWednesday(double holidayWednesday) {
-        this.holidayWednesday = holidayWednesday;
-    }
 
     public double getHolidayWorkedWednesday() {
         return holidayWorkedWednesday;
@@ -395,13 +457,6 @@ public class Timesheet {
         this.compTimeUsedThursday = compTimeUsedThursday;
     }
 
-    public double getHolidayThursday() {
-        return holidayThursday;
-    }
-
-    public void setHolidayThursday(double holidayThursday) {
-        this.holidayThursday = holidayThursday;
-    }
 
     public double getHolidayWorkedThursday() {
         return holidayWorkedThursday;
@@ -467,13 +522,7 @@ public class Timesheet {
         this.compTimeUsedFriday = compTimeUsedFriday;
     }
 
-    public double getHolidayFriday() {
-        return holidayFriday;
-    }
 
-    public void setHolidayFriday(double holidayFriday) {
-        this.holidayFriday = holidayFriday;
-    }
 
     public double getHolidayWorkedFriday() {
         return holidayWorkedFriday;
@@ -507,15 +556,10 @@ public class Timesheet {
         this.weekTotal = weekTotal;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
-    public com.example.springboot_security403.User getEmployee() {
+
+    public User getEmployee() {
         return employee;
     }
 
@@ -523,30 +567,90 @@ public class Timesheet {
         this.employee = employee;
     }
 
-    public double calcHours() {
-
-        double salary = 20.0;
+    public void calcWeekPay(double salary) {
 
 
-        double regular = regularMonday + regularTuesday + regularWednesday + regularThursday + regularFriday;
-        double annualLeave = annualLeaveMonday + annualLeaveTuesday + annualLeaveThursday + annualLeaveWednesday + annualLeaveFriday;
-        double holidayWorked = holidayWorkedMonday + holidayWorkedTuesday + holidayWorkedWednesday + holidayWorkedThursday + holidayWorkedFriday;
-        double holidayOvertime = holidayOvertimeMonday + holidayOvertimeTuesday + holidayOvertimeWednesday + holidayOvertimeThursday + holidayOvertimeFriday;
-        double regularOvertime = regularOvertimeMonday + regularOvertimeTuesday + regularOvertimeWednesday + regularOvertimeThursday + regularOvertimeFriday;
+        regular = regularMonday + regularTuesday + regularWednesday + regularThursday + regularFriday;
+        annualLeave = annualLeaveMonday + annualLeaveTuesday + annualLeaveThursday + annualLeaveWednesday + annualLeaveFriday;
+        holidayWorked = holidayWorkedMonday + holidayWorkedTuesday + holidayWorkedWednesday + holidayWorkedThursday + holidayWorkedFriday;
+        holidayOvertime = holidayOvertimeMonday + holidayOvertimeTuesday + holidayOvertimeWednesday + holidayOvertimeThursday + holidayOvertimeFriday;
+        regularOvertime = regularOvertimeMonday + regularOvertimeTuesday + regularOvertimeWednesday + regularOvertimeThursday + regularOvertimeFriday;
+
+
+
+        totalHours = regular + annualLeave + holidayWorked + holidayOvertime + regularOvertime;
+        setTotalHours(totalHours);
+
+
 
         //convert hours into money
         regular = regular * salary;
+        setRegular(regular);
         regularOvertime = regularOvertime * salary * 1.5;
+
         holidayWorked = holidayWorked * salary * 1.5;
+        setHolidayWorked(holidayWorked);
         holidayOvertime = holidayOvertime * salary * 2.0;
+        setHolidayOvertime(holidayOvertime);
         annualLeave = annualLeave * salary;
+        setAnnualLeave(annualLeave);
 
         weekTotal = regular + regularOvertime + holidayWorked + holidayOvertime + annualLeave;
 
+        setWeekTotal(weekTotal);
+    }
 
+    public double compTime () {
 
+        return 0;
+    }
 
-        return weekTotal;
+    public String getStage() {
+        return stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
+
+    public boolean isHolidayMonday() {
+        return holidayMonday;
+    }
+
+    public void setHolidayMonday(boolean holidayMonday) {
+        this.holidayMonday = holidayMonday;
+    }
+
+    public boolean isHolidayTuesday() {
+        return holidayTuesday;
+    }
+
+    public void setHolidayTuesday(boolean holidayTuesday) {
+        this.holidayTuesday = holidayTuesday;
+    }
+
+    public boolean isHolidayWednesday() {
+        return holidayWednesday;
+    }
+
+    public void setHolidayWednesday(boolean holidayWednesday) {
+        this.holidayWednesday = holidayWednesday;
+    }
+
+    public boolean isHolidayThursday() {
+        return holidayThursday;
+    }
+
+    public void setHolidayThursday(boolean holidayThursday) {
+        this.holidayThursday = holidayThursday;
+    }
+
+    public boolean isHolidayFriday() {
+        return holidayFriday;
+    }
+
+    public void setHolidayFriday(boolean holidayFriday) {
+        this.holidayFriday = holidayFriday;
     }
 }
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 
 
 @Controller
@@ -39,14 +40,30 @@ public class HomeController {
         return "timesheetform";
     }
 
-    @PostMapping("/processtimesheet")
+    @PostMapping("/timesheetapproval")
     public String processTimesheet(@Valid Timesheet timesheet, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "timesheetform";
         }
+        timesheet.setStage("pending approval");
+        timesheet.calcWeekPay(20.0);
         timesheetRepository.save(timesheet);
         model.addAttribute("timesheet", timesheet);
-        return "timesheet";
+        return "testtable";
+    }
+
+
+    @PostMapping("/savetimesheet")
+    public String saveTimesheet(@ModelAttribute Timesheet timesheet, Model model) {
+        timesheet.setStage("edit");
+        Action action = new Action();
+        LocalDate date = LocalDate.now();
+        action.setDate(date);
+        actionRepository.save(action);
+        timesheet.calcWeekPay(20.0);
+        timesheetRepository.save(timesheet);
+        model.addAttribute("timesheet", timesheet);
+        return "timesheetform2";
     }
 
     @RequestMapping("/timesheet/{id}")
