@@ -117,6 +117,7 @@ public class Timesheet {
 
     private Date date;
 
+
     public Timesheet() {
     }
 
@@ -542,6 +543,8 @@ public class Timesheet {
         annualLeave = annualLeave * salary;
 
         weekTotal = regular + regularOvertime + holidayWorked + holidayOvertime + annualLeave;
+
+
 
 
 

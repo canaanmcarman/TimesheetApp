@@ -9,30 +9,70 @@
 </head>
 <body>
 <div class="container">
-    <table class="table">
-        <h2 class="title" align="center">Timesheet Queue</h2>
-        <thread>
-            <tr>
-                <th>Employee</th>
-                <th>Total</th>
-                <th>View</th>
-                <th>Approve/Reject</th>
-            </tr>
-        </thread>
-        <tbody>
-        <tr th:each="timesheet:{timesheets}">
-            <td th:inline="text">[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</td>
-            <td th:text="${timesheet.total}"></td>
-            <td>
-                <a th:href="@{/timesheet/{id}(id=${timesheet.id})}"></a>
-            </td>
-            <td>
-                <a th:href="@{/approvetimesheet/{id}(id=${timesheet.id})}"></a>
-                <a th:href="@{/rejecttimesheet/{id}(id=${timesheet.id})}"></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class ="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="title" align="center">Timesheet Queue</h5>
+                </div>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names" title="Type in a name">
+                <table class="table">
+                    <thread>
+                        <tr>
+                            <th scope="col">Employee</th>
+                            <th scope="col">Timesheet</th>
+                            <th scope="col">Week Salary</th>
+                            <th scope="col">Total Hours</th>
+                            <th scope="col">Date
+                                <select th:field="*{date}" class="custom-select">
+                                    <option th:each="date:${dates}" th:text="${timesheet.date}"></option>
+                                </select>
+                            </th>
+                            <th scope="col">Stage
+                                <select th:field="*{stage}" class="custom-select">
+                                    <option th:each="stage:${stages}" th:text="${timesheet.stage}"></option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                    <tr th:each="timesheet:${timesheets}">
+                        <td th:inline="text">[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</td>
+                        <td th:inline="text"><a th:href="@{/timesheet/{id}(id=${timesheet.id})}">Timesheet</a></td>
+                        <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
+                        <td th:inline="text">[[${timesheet.date}]]</td>
+                        <td th:inline="text">[[${timesheet.totalHours}]]</td>
+                        <td th:inline="text">[[${timesheet.stage}]]</td>
+                        <td>
+                            <a th:href="@{/approvetimesheet/{id}(id=${timesheet.id})}"></a>
+                            <a th:href="@{/rejecttimesheet/{id}(id=${timesheet.id})}"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <script>
+                    function myFunction(){
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("myInput");
+                        filter =input.value.toUpperCase();
+                        table =document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i=0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[0];
+                            if(td){
+                                txtValue = td.textContent || td.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter)>-1){
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
 </div>
 
 
