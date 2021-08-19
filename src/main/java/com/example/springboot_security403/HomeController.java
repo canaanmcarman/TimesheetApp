@@ -48,11 +48,12 @@ public class HomeController {
         //email section
         //for admin
         String header = " header ....";
-        String contentForAdmin = "Hi Admin, here is this week's timesheet for your review....";
+        String contentForAdmin = "Employee has submitted a timesheet for review. Please check the queue.";
         String emailAdmin = "ccamaru89@gmail.com";
         //for employee
-        String contentForEmployee = "Hi Employee, your timesheet is approved/rejected/...";
-        String emailEmployee = "ccamaru89@gmail.com";
+        String contentForEmployee = "Hi Employee, your timesheet was submitted and is pending approval";
+        User employee = timesheet.getEmployee();
+        String emailEmployee = employee.getEmail();
         emailService.sendSimpleEmail(contentForAdmin, header, emailAdmin);
         emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
         timesheetRepository.save(timesheet);
@@ -75,15 +76,19 @@ public class HomeController {
         model.addAttribute("timesheet", timesheet);
         return "testtable";
     }
-    @RequestMapping("/approve")
-    public String approveTimesheet(Model model) {
+    @RequestMapping("/approve/{id}")
+    public String approveTimesheet(@PathVariable("id") long id, Model model) {
+        Timesheet timesheet = timesheetRepository.findById(id).get();
+        timesheet.setStage("approved");
+        model.addAttribute("timesheet", timesheet);
+        timesheetRepository.save(timesheet);
 
-
+        // send user a paystub
 
         return "index";
     }
 
-    @RequestMapping("/reject")
+    @RequestMapping("/reject/{id}")
     public String rejectTimesheet() {
 
         return "index";
@@ -92,12 +97,18 @@ public class HomeController {
     @RequestMapping("/timesheet/{id}")
     public String viewTimesheet(@PathVariable("id") long id, Model model) {
         model.addAttribute("timesheet", timesheetRepository.findById(id).get());
-        return "timesheet";
+        return "testtable";
     }
 
     @RequestMapping("/edittimesheet/{id}")
     public String editTimesheet(@PathVariable("id") long id, Model model) {
-        model.addAttribute("timesheet", timesheetRepository.findById(id).get());
+        Timesheet timesheet = timesheetRepository.findById(id).get();
+        model.addAttribute("timesheet", timesheet);
+        if (timesheet.getStage().equals("approved")) {
+            String message = "You have already submitted this timesheet for approval. If rejected by employer you can edit again";
+            model.addAttribute("message", message);
+            return "testtable";
+        }
         return "timesheetform";
     }
 
