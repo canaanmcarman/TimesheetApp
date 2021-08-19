@@ -46,6 +46,7 @@ public class HomeController {
         timesheet.setStage("pending approval");
         model.addAttribute("timesheet", timesheet);
         timesheetRepository.save(timesheet);
+        emailService.SendTemplatedEmail("Employee submitted timesheet for approval");
         return "testtable";
     }
 
@@ -63,6 +64,19 @@ public class HomeController {
         timesheetRepository.save(timesheet);
         model.addAttribute("timesheet", timesheet);
         return "testtable";
+    }
+    @RequestMapping("/approve")
+    public String approveTimesheet(Model model) {
+
+
+
+        return "index";
+    }
+
+    @RequestMapping("/reject")
+    public String rejectTimesheet() {
+
+        return "index";
     }
 
     @RequestMapping("/timesheet/{id}")
@@ -144,15 +158,8 @@ public class HomeController {
         emailService.SendSimpleEmail("your timesheet is rejected", "timesheet");
         return "success";
     }
-    @RequestMapping("/approvetimesheet")
-    public String approveTimesheet() {
-        return "index";
-    }
 
-    @RequestMapping("/rejecttimesheet")
-    public String rejectTimesheet() {
 
-        return "index";
-    }
+
 
 }
