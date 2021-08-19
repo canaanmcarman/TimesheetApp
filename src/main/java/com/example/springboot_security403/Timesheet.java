@@ -262,7 +262,6 @@ public class Timesheet {
         this.compTimeUsedMonday = compTimeUsedMonday;
     }
 
-
     public double getHolidayWorkedMonday() {
         return holidayWorkedMonday;
     }
@@ -605,7 +604,6 @@ public class Timesheet {
 
         return 0;
     }
-
 
     public String getStage() {
         return stage;
