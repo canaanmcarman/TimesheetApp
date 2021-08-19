@@ -29,14 +29,13 @@
             <td th:inline="text"><a th:href="@{/timesheet/{id}(id=${timesheet.id})}">Timesheet</a></td>
             <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
             <td th:inline="text">[[${timesheet.totalHours}]]</td>
-            <td th:inline="text">[[${timesheet.stage}]]</td>
+            <td th:inline="text">[[${timesheet.stage}]] </td>
         </tr>
-        <div sec:authorize="hasRole('')">
-            <a th:href="@{/approvetimesheet/{id}(id=${timesheet.id})}"></a>
-            <a th:href="@{/rejecttimesheet/{id}(id=${timesheet.id})}"></a>
-        </div>
         </tbody>
     </table>
+    <div>
+        <a th:href="@{/viewpending}"> Pending </a>
+    </div>
 </div>
 <script>
     function myFunction(){

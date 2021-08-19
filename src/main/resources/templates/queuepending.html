@@ -9,25 +9,36 @@
 </head>
 <body>
 <div class="container">
-    <table id="table2" cellpadding="0" cellspacing="0">
-        <tr>
-            <th>Employee</th>
-            <th>Timesheet</th>
-            <th>Week Salary</th>
-            <th>Total Hours</th>
-            <th>Date</th>
-            <th>Stage</th>
-        </tr>
-        <tr>
+    <div class="card-body text-center">
+        <h5 class="title" align="center">Pending Timesheet</h5>
+    </div>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names" title="Type in a name">
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Employee</th>
+                <th scope="col">Timesheet</th>
+                <th scope="col">Week Salary</th>
+                <th scope="col">Total Hours</th>
+                <th scope="col">Stage</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr th:each="timesheet:${timesheets}">
             <td th:inline="text">[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</td>
             <td th:inline="text"><a th:href="@{/timesheet/{id}(id=${timesheet.id})}">Timesheet</a></td>
             <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
             <td th:inline="text">[[${timesheet.totalHours}]]</td>
-            <td th:inline="text">[[${timesheet.date}]]</td>
             <td th:inline="text">[[${timesheet.stage}]]</td>
         </tr>
+        <div sec:authorize="hasRole('')">
+            <a th:href="@{/approvetimesheet/{id}(id=${timesheet.id})}"></a>
+            <a th:href="@{/rejecttimesheet/{id}(id=${timesheet.id})}"></a>
+        </div>
+        </tbody>
     </table>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

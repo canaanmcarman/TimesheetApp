@@ -18,8 +18,8 @@
 
 <h2 th:inline="text"> total hours: [[${timesheet.totalHours}]]</h2>
 
-<a th:href="@{/timesheetapproval}">Submit for approval</a>
-<a th:href="@{/edittimesheet/{id}}">Edit timesheet</a>
+<a th:href="@{/timesheetapproval/{id}(id=${timesheet.id})}">Submit for approval</a>
+<a th:href="@{/edittimesheet/{id}(id=${timesheet.id})}">Edit timesheet</a>
 
 
 
