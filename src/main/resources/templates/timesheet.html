@@ -12,6 +12,7 @@
 
 <div class="container">
     <div class="row">
+
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default panel-table">
                 <div class="panel-heading">
@@ -28,45 +29,51 @@
                     <table class="table table-striped table-bordered table-list">
                         <thead>
                         <tr>
-                            <th class="hidden-xs"></th>
+                            <th class="hidden-xs">Name: [[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</th>
                             <th > Total</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">Name</th>
-                            <td th:text="[[${timesheet.annualLeave}]]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Annual Leave:</th>
-                            <td th:text="[[${timesheet.annualLeave}]]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Holiday Worked:</th>
-                            <td th:text="${timesheet.holidayWorked}]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Holiday Overtime:</th>
-                            <td th:text="${timesheet.holidayOvertime}}"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Regular Hours:</th>
-                            <td th:text="${timesheet.regular}"></td>
+                            <th scope="row">Regular:</th>
+                            <td th:inline="text">$[[${timesheet.regular}]]</td>
                         </tr>
                         <tr>
                             <th scope="row">Overtime:</th>
-                            <td th:text="${timesheet.regularOvertime}"></td>
+                            <td th:inline="text">$[[${timesheet.regularOvertime}]]</td>
                         </tr>
+
+                        <tr>
+                            <th scope="row">Annual Leave:</th>
+                            <td th:inline="text">$[[${timesheet.annualLeave}]]</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Holiday:</th>
+                            <td th:inline="text">$[[${timesheet.annualLeave}]]</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Holiday Overtime:</th>
+                            <td th:inline="text">$[[${timesheet.holidayOvertime}]]</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Total Hours Worked:</th>
+                            <td th:inline="text">[[${timesheet.totalHours}]] hours</td>
+                        </tr>
+
                         <tr>
                             <th scope="row">Total Salary:</th>
-                            <td th:text="${timesheet.weekTotal}"></td>
+                            <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
                         </tr>
-                        <tr>
-                            <th scope="row">Total Hours:</th>
-                            <td th:text="${timesheet.totalHours"></td>
-                        </tr>
+
                         </tbody>
+
                     </table>
+                    <a th:href="@{/timesheetapproval/{id}(id=${timesheet.id})}">Submit for approval</a> ||
+                    <a th:href="@{/edittimesheet/{id}(id=${timesheet.id})}">Edit timesheet</a>
+                    <h3 th:if="${message}">[[${message}]]</h3>
+                    <h3 th:if="${message2}">[[${message2}]]</h3>
+                    <h3 th:if="${message3}">[[${message3}]]</h3>
 
                 </div>
 
@@ -74,6 +81,7 @@
                         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                         crossorigin="anonymous"></script>
             </div></div></div>
+</div>
 
 </body>
 </html>
