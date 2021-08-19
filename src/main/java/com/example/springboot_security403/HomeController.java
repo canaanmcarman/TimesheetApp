@@ -40,12 +40,13 @@ public class HomeController {
         return "timesheetform";
     }
 
-    @PostMapping("/timesheetapproval")
-    public String processTimesheet(@ModelAttribute Timesheet timesheet, Model model) {
+    @RequestMapping("/timesheetapproval/{id}")
+    public String processTimesheet(@PathVariable("id") long id, Model model) {
+        Timesheet timesheet = timesheetRepository.findById(id).get();
         timesheet.setStage("pending approval");
-        timesheetRepository.save(timesheet);
         model.addAttribute("timesheet", timesheet);
-        return "index";
+        timesheetRepository.save(timesheet);
+        return "testtable";
     }
 
 
