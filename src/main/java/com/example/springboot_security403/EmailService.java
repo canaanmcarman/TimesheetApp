@@ -49,12 +49,11 @@ public class EmailService {
         context.setVariable("message", message);
         return templateEngine.process("mailtemplate", context);
     }
-
-    public void SendSimpleEmail(String text, String subject) {
+    public void sendSimpleEmail(String text, String subject, String email) {
         try {
             Message message = new MimeMessage(GetSession());
             message.setFrom(new InternetAddress("ccamaru89@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ccamaru89@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("email"));
             message.setSubject(subject);
             message.setText(text);
             Transport.send(message);
