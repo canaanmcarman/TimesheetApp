@@ -45,8 +45,18 @@ public class HomeController {
         Timesheet timesheet = timesheetRepository.findById(id).get();
         timesheet.setStage("pending approval");
         model.addAttribute("timesheet", timesheet);
+        //email section
+        //for admin
+        String header = " header ....";
+        String contentForAdmin = "Hi Admin, here is this week's timesheet for your review....";
+        String emailAdmin = "ccamaru89@gmail.com";
+        //for employee
+        String contentForEmployee = "Hi Employee, your timesheet is approved/rejected/...";
+        String emailEmployee = "ccamaru89@gmail.com";
+        emailService.sendSimpleEmail(contentForAdmin, header, emailAdmin);
+        emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
         timesheetRepository.save(timesheet);
-        emailService.SendTemplatedEmail("Employee submitted timesheet for approval");
+//        emailService.SendTemplatedEmail("Employee submitted timesheet for approval");
         return "testtable";
     }
 
@@ -155,9 +165,11 @@ public class HomeController {
     }
     @GetMapping("/sendRejectEmail")
     public String sendRejectEmail(){
-        emailService.SendSimpleEmail("your timesheet is rejected", "timesheet");
+//        emailService.sendSimpleEmail("your timesheet is rejected", "timesheet");
         return "success";
     }
+
+
 
 
 }
