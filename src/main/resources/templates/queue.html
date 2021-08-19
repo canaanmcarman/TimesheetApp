@@ -26,7 +26,7 @@
         <tbody>
         <tr th:each="timesheet:${timesheets}">
             <td th:inline="text">[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]</td>
-            <td th:inline="text"><a th:href="@{/timesheet/{id}(id=${timesheet.id})}"></a></td>
+            <td th:inline="text"><a th:href="@{/timesheet/{id}(id=${timesheet.id})}">Timesheet</a></td>
             <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
             <td th:inline="text">[[${timesheet.totalHours}]]</td>
             <td th:inline="text">[[${timesheet.stage}]]</td>

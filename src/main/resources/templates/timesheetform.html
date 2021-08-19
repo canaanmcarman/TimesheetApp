@@ -10,6 +10,7 @@
 <body>
 <form th:action="@{/savetimesheet}" method="post" th:object="${timesheet}">
     <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{employee}">
     <input type="hidden" th:field="*{stage}">
     <input type="hidden" th:field="*{employee}">
     <input type="hidden" th:field="*{payCode}">
