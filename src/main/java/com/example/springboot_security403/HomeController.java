@@ -126,7 +126,6 @@ public class HomeController {
     @RequestMapping("/viewall")
     public String viewAll(Model model) {
         model.addAttribute("timesheets", timesheetRepository.findAll());
-
         return "queue";
     }
 
