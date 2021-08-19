@@ -124,8 +124,13 @@ public class HomeController {
     @RequestMapping("/viewall")
     public String viewAll(Model model) {
         model.addAttribute("timesheets", timesheetRepository.findAll());
-
         return "queue";
+    }
+    @RequestMapping("/viewpending")
+    public String viewPending(Model model) {
+        model.addAttribute("timesheets", timesheetRepository.findAllByStage("pending approval"));
+
+        return "queuepending";
     }
 
     @GetMapping("/sendApprovedEmail")
