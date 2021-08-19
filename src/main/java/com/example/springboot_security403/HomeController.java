@@ -41,15 +41,11 @@ public class HomeController {
     }
 
     @PostMapping("/timesheetapproval")
-    public String processTimesheet(@Valid Timesheet timesheet, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "timesheetform";
-        }
+    public String processTimesheet(@ModelAttribute Timesheet timesheet, Model model) {
         timesheet.setStage("pending approval");
-        timesheet.calcWeekPay(20.0);
         timesheetRepository.save(timesheet);
         model.addAttribute("timesheet", timesheet);
-        return "testtable";
+        return "index";
     }
 
 
