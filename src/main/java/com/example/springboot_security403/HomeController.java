@@ -155,7 +155,7 @@ public class HomeController {
     }
     @GetMapping("/sendRejectEmail")
     public String sendRejectEmail(){
-        emailService.SendSimpleEmail("your timesheet is rejected", "timesheet");
+//        emailService.sendSimpleEmail("your timesheet is rejected", "timesheet");
         return "success";
     }
 
