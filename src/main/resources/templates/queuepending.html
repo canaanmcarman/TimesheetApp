@@ -35,12 +35,15 @@
             <td th:inline="text"><a th:href="@{/approve/{id}(id=${timesheet.id})}">Approve</a></td>
             <td th:inline="text"><a th:href="@{/reject/{id}(id=${timesheet.id})}">Reject</a></td>
         </tr>
-        <div sec:authorize="hasRole('')">
+        <div sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/approve/{id}(id=${timesheet.id})}"></a>
             <a th:href="@{/reject/{id}(id=${timesheet.id})}"></a>
         </div>
         </tbody>
     </table>
+    <div>
+        <a th:href="@{/viewall}"><input type="button" value="Back" Style="color: white; background-color:green; border-color: black;"></a>
+    </div>
 </div>
 
 

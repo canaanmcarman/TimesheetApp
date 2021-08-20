@@ -22,6 +22,7 @@
                 <th scope="col">Week Salary</th>
                 <th scope="col">Total Hours</th>
                 <th scope="col">Stage</th>
+                <th scope="col">Date</th>
             </tr>
         </thread>
         <tbody>
@@ -31,11 +32,12 @@
             <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
             <td th:inline="text">[[${timesheet.totalHours}]]</td>
             <td th:inline="text">[[${timesheet.stage}]] </td>
+            <td th:inline="text">[[${timesheet.date}]]</td>
         </tr>
         </tbody>
     </table>
     <div>
-        <a th:href="@{/viewpending}"> Pending </a>
+        <a th:href="@{/viewpending}"><input type="button" value="Pending" Style="color: white; background-color:green; border-color: black;"></a>
     </div>
 </div>
 
