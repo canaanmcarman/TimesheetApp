@@ -193,6 +193,19 @@ public class HomeController {
         return "logs";
     }
 
+    @RequestMapping("/profile")
+    public String viewProfile(Principal principal, Model model) {
+        String username = principal.getName();
+        User employee = userRepository.findByUsername(username);
+        model.addAttribute("employee", employee);
+
+        return "profile";
+    }
+
+//    @RequestMapping("/viewtimesheets") {
+//
+//    }
+
 
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model){
