@@ -80,7 +80,8 @@ public class HomeController {
     public String saveTimesheet(@ModelAttribute Timesheet timesheet, Model model, Principal principal) {
         timesheet.setStage("edit");
 //        Action action = new Action();
-//        LocalDate date = LocalDate.now();
+        LocalDate date = LocalDate.now();
+        timesheet.setDate(date);
 //        action.setDate(date);
 //        actionRepository.save(action);
         timesheet.calcWeekPay(20);

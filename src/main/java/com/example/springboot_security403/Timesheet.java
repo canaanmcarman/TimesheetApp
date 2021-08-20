@@ -20,8 +20,8 @@ public class Timesheet {
 
     private double weekTotal;
 
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd")
-//    private LocalDate date;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
     private String stage;  //create, edit, pending approval, Approved
 
@@ -668,6 +668,14 @@ public class Timesheet {
 
     public void setRegularOvertimeTotalAmnt(double regularOvertimeTotalAmnt) {
         this.regularOvertimeTotalAmnt = 1.5 * this.overtimeHours;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
 
