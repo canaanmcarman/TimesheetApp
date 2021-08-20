@@ -25,7 +25,6 @@ public class Timesheet {
 
     private String stage;  //create, edit, pending approval, Approved
 
-
     //monday
     private double regularMonday;
 
@@ -134,6 +133,8 @@ public class Timesheet {
     private double compTimeEarned;
 
     private double totalHours = regular + annualLeave + holidayWorked + holidayOvertime + regularOvertime;
+    private double overtimeHours;
+    private double regularOvertimeTotalAmnt;
 
 
 
@@ -651,7 +652,22 @@ public class Timesheet {
 
     public void setHolidayFriday(boolean holidayFriday) {
         this.holidayFriday = holidayFriday;
+    }
 
+    public double getOvertimeHours() {
+        return overtimeHours;
+    }
+
+    public void setOvertimeHours(double overtimeHours) {
+        this.overtimeHours = this.regularOvertimeMonday + this.regularOvertimeTuesday;
+    }
+
+    public double getRegularOvertimeTotalAmnt() {
+        return regularOvertimeTotalAmnt;
+    }
+
+    public void setRegularOvertimeTotalAmnt(double regularOvertimeTotalAmnt) {
+        this.regularOvertimeTotalAmnt = 1.5 * this.overtimeHours;
     }
 }
 
