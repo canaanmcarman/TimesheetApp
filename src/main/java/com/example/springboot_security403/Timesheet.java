@@ -131,6 +131,7 @@ public class Timesheet {
     private double holidayOvertime;
     private double regularOvertime;
     private double compTimeEarned;
+    private double compTimeUsed;
 
     private double totalHours = regular + annualLeave + holidayWorked + holidayOvertime + regularOvertime;
     private double overtimeHours;
@@ -576,8 +577,7 @@ public class Timesheet {
         holidayWorked = holidayWorkedMonday + holidayWorkedTuesday + holidayWorkedWednesday + holidayWorkedThursday + holidayWorkedFriday;
         holidayOvertime = holidayOvertimeMonday + holidayOvertimeTuesday + holidayOvertimeWednesday + holidayOvertimeThursday + holidayOvertimeFriday;
         regularOvertime = regularOvertimeMonday + regularOvertimeTuesday + regularOvertimeWednesday + regularOvertimeThursday + regularOvertimeFriday;
-
-
+        compTimeUsed = compTimeUsedMonday + compTimeUsedTuesday + compTimeUsedWednesday + compTimeUsedThursday + compTimeUsedFriday;
 
         totalHours = regular + annualLeave + holidayWorked + holidayOvertime + regularOvertime;
         setTotalHours(totalHours);
@@ -588,7 +588,8 @@ public class Timesheet {
         regular = regular * salary;
         setRegular(regular);
         regularOvertime = regularOvertime * salary * 1.5;
-
+        compTimeUsed = compTimeUsed * salary;
+        setCompTimeUsed(compTimeUsed);
         holidayWorked = holidayWorked * salary * 1.5;
         setHolidayWorked(holidayWorked);
         holidayOvertime = holidayOvertime * salary * 2.0;
@@ -596,15 +597,19 @@ public class Timesheet {
         annualLeave = annualLeave * salary;
         setAnnualLeave(annualLeave);
 
+
+
         weekTotal = regular + regularOvertime + holidayWorked + holidayOvertime + annualLeave;
 
         setWeekTotal(weekTotal);
     }
+    public void calcCompTime() {
 
-    public double compTime () {
+        compTimeEarned = regular * 0.05;
+        compTimeUsed = compTimeUsedMonday + compTimeUsedTuesday + compTimeUsedWednesday + compTimeUsedThursday + compTimeUsedFriday;
 
-        return 0;
     }
+
 
     public String getStage() {
         return stage;
@@ -676,6 +681,14 @@ public class Timesheet {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public double getCompTimeUsed() {
+        return compTimeUsed;
+    }
+
+    public void setCompTimeUsed(double compTimeUsed) {
+        this.compTimeUsed = compTimeUsed;
     }
 }
 
