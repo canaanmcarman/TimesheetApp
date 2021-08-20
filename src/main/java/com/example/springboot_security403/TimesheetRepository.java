@@ -8,5 +8,4 @@ public interface TimesheetRepository extends CrudRepository<Timesheet, Long> {
     Iterable<Timesheet> findAllByStage(String stage);
     Iterable<Timesheet> findAllByEmployee(User employee);
     Iterable<Timesheet> findAllByDateBefore(LocalDate date);
-    Iterable<Timesheet> findAllByStageAndUsername(String stage, User employee);
  }
