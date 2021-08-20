@@ -21,6 +21,7 @@
                 <th scope="col">Week Salary</th>
                 <th scope="col">Total Hours</th>
                 <th scope="col">Stage</th>
+                <th scope="col">Approve/Reject</th>
             </tr>
         </thread>
         <tbody>
@@ -30,6 +31,8 @@
             <td th:inline="text">$[[${timesheet.weekTotal}]]</td>
             <td th:inline="text">[[${timesheet.totalHours}]]</td>
             <td th:inline="text">[[${timesheet.stage}]]</td>
+            <td th:inline="text"><a th:href="@{/approve/{id}(id=${timesheet.id})}">Approve</a></td>
+            <td th:inline="text"><a th:href="@{/reject/{id}(id=${timesheet.id})}">Reject</a></td>
         </tr>
         <div sec:authorize="hasRole('')">
             <a th:href="@{/approvetimesheet/{id}(id=${timesheet.id})}"></a>

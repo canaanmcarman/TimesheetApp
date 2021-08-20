@@ -152,8 +152,20 @@ public class HomeController {
 
     @RequestMapping("/reject/{id}")
     public String rejectTimesheet(@PathVariable("id") long id, Model model) {
+        Timesheet timesheet = timesheetRepository.findById(id).get();
+        timesheet.setStage("edit");
+        model.addAttribute("timesheet", timesheet);
+        timesheetRepository.save(timesheet);
 
-        return "index";
+        String header = " header ....";
+        User employee = timesheet.getEmployee();
+        String emailEmployee = employee.getEmail();
+        //for employee
+        String contentForEmployee = "Hi " + timesheet.getEmployee().getFirstName() + ", your timesheet was rejected. Please check that you inputted the correct hours" +
+                "and send again";
+        emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
+
+        return "redirect:/viewall";
     }
 
     @RequestMapping("/timesheet/{id}")
@@ -232,19 +244,5 @@ public class HomeController {
 
         return "queuepending";
     }
-
-    @GetMapping("/sendApprovedEmail")
-    public String sendApprovedEmail(){
-        emailService.SendTemplatedEmail("your timesheet is approved");
-        return "success";
-    }
-    @GetMapping("/sendRejectEmail")
-    public String sendRejectEmail(){
-//        emailService.sendSimpleEmail("your timesheet is rejected", "timesheet");
-        return "success";
-    }
-
-
-
 
 }
