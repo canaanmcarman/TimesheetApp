@@ -10,15 +10,12 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<div class="container">
-<h2> Welcome Page </h2>
+<div class="container mb-3" style="background-color: transparent";>
 
-<a th:href="@{/admin}">Admin Page</a>
-<br>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Logout">
-</form>
-
+<h1 align="center"> Welcome to CaMaRu Employee Portal</h1>
+<p class="card-text" align="center"> We have been on more than 30 cruises and dozens of resorts across the world and <br>
+    we are our client's number one choice. The success of CaMaRu mainly depends on the hard work that it's <br>
+    employees put in. Thank you for all extra hours you spent to our successful journey! </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
