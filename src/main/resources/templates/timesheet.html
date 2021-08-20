@@ -69,8 +69,10 @@
                         </tbody>
 
                     </table>
-                    <a th:href="@{/timesheetapproval/{id}(id=${timesheet.id})}">Submit for approval</a> ||
-                    <a th:href="@{/edittimesheet/{id}(id=${timesheet.id})}">Edit timesheet</a>
+                    <a sec:authorize="hasRole('USER')" th:href="@{/timesheetapproval/{id}(id=${timesheet.id})}"><input type="button" value="Submit for approval" Style="color: white; background-color:green; border-color: black;"></a>
+                    <a sec:authorize="hasRole('USER')"th:href="@{/edittimesheet/{id}(id=${timesheet.id})}"><input type="button" value="Edit" Style="color: white; background-color:green; border-color: black;"></a> <br>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/approve/{id}(id=${timesheet.id})}"><input type="button" value="Approve" Style="color: white; background-color:green; border-color: black;"></a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/reject/{id}(id=${timesheet.id})}"><input type="button" value="Reject" Style="color: white; background-color:green; border-color: black;"></a>
                     <h3 th:if="${message}">[[${message}]]</h3>
                     <h3 th:if="${message2}">[[${message2}]]</h3>
                     <h3 th:if="${message3}">[[${message3}]]</h3>
