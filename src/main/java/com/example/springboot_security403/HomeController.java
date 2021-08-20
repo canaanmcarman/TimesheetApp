@@ -57,7 +57,7 @@ public class HomeController {
         //email section
         //for admin
         String username = principal.getName();
-        String header = " header ....";
+        String header = "Timesheet submitted";
         String contentForAdmin = username + " has submitted a timesheet for review. Please check the queue.";
         String emailAdmin = "ccamaru89@gmail.com";
         //for employee
