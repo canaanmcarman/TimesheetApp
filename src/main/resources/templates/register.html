@@ -12,13 +12,9 @@
 <div th:replace="base::nav"></div>
 <div class="container">
     <h4>New User Registration</h4>
-    <form autocomplete="off" th:action="@{/processregister}" th:object="${user}"    method="post">
+    <form autocomplete="off" th:action="@{/processregister}" th:object="${user}" method="post">
         First name <br><input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}">
-        <mark>
-            <strong>
-                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
-            </strong>
-        </mark> <br>
+        <mark><strong><span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span></strong></mark> <br>
 
         Last Name<br> <input type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}">
         <mark><strong><span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span></strong></mark><br>
