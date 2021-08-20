@@ -12,38 +12,38 @@
 <div th:fragment="nav">
     <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: green;">
         <div class="container-fluid" >
-            <a class="navbar-brand">CaMaRu</a>
+            <a class="navbar-brand" style="font-family: Optima">CaMaRu</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Home</a>
+                        <a class="nav-link" th:href="@{/}" style="font-family: Optima">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/addtimesheet}">Add timesheet</a>
+                        <a class="nav-link" th:href="@{/addtimesheet}" style="font-family: Optima">Add timesheet</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/viewall}">View All Timesheets</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/viewall}" style="font-family: Optima">View All Timesheets</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/actionlog}">Employee Actions</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/actionlog}" style="font-family: Optima">Employee Actions</a>
                     </li>
                 </ul>
 
                 <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{/profile}">Profile</a>
+                        <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{/profile}" style="font-family: Optima">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/login}">Login</a>
+                        <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/login}" style="font-family: Optima">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/register}">Register</a>
+                        <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/register}" style="font-family: Optima">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{logout}">Logout</a>
+                        <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{logout}" style="font-family: Optima">Logout</a>
                     </li>
                 </ul>
             </div>
