@@ -9,6 +9,7 @@
     <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="base::nav"></div>
 <div class="container">
     <h2 class="d-flex justify-content-center" th:inline="text">[[${employee.firstName}]] [[${employee.lastName}]]</h2>
     <h4 th:inline="text"> <b>Username:</b> [[${employee.username}]]</h4>
