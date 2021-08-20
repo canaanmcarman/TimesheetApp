@@ -24,11 +24,9 @@ public class CommandLineRunnerBean implements CommandLineRunner {
 
         User admin = new User("super", "super@domain.com", "super", "Super", "Hero", true);
         Role adminRole1 = new Role("super", "ROLE_ADMIN");
-        Role adminRole2 = new Role("super", "ROLE_USER");
 
         userRepository.save(admin);
         roleRepository.save(adminRole1);
-        roleRepository.save(adminRole2);
 
     }
 }
