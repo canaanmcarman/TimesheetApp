@@ -68,9 +68,17 @@ public class HomeController {
         emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
         timesheetRepository.save(timesheet);
 //        emailService.SendTemplatedEmail("Employee submitted timesheet for approval");
-
         String message = "Submitted for approval! Check your email.";
         model.addAttribute("message3", message);
+
+        //add action
+        LocalDate date = LocalDate.now();
+        Action action = new Action();
+        action.setDate(date);
+        action.setActionName("submitted timesheet for approval");
+        action.setEmployee(employee);
+        actionRepository.save(action);
+
         return "timesheet";
 
     }
@@ -78,16 +86,39 @@ public class HomeController {
 
     @PostMapping("/savetimesheet")
     public String saveTimesheet(@ModelAttribute Timesheet timesheet, Model model, Principal principal) {
-        timesheet.setStage("edit");
-//        Action action = new Action();
+
+
+
+        //set date
         LocalDate date = LocalDate.now();
         timesheet.setDate(date);
-//        action.setDate(date);
-//        actionRepository.save(action);
+
+        //set action
+        Action action = new Action();
+        action.setDate(date);
+
+
+        //calc pay
         timesheet.calcWeekPay(20);
         String username = principal.getName();
+
+        //set stage
+        if (timesheet.getStage() == null) {
+            timesheet.setStage("create");
+            action.setActionName("created timesheet");
+        } else if (timesheet.getStage().isEmpty()){
+            timesheet.setStage("create");
+            action.setActionName("created timesheet");
+        } else {
+            timesheet.setStage("edit");
+            action.setActionName("edited timesheet");
+        }
+
+        //save
         timesheet.setEmployee(userRepository.findByUsername(username));
+        action.setEmployee(timesheet.getEmployee());
         timesheetRepository.save(timesheet);
+        actionRepository.save(action);
         model.addAttribute("timesheet", timesheet);
         return "timesheet";
     }
@@ -140,6 +171,8 @@ public class HomeController {
             model.addAttribute("message", message);
             return "timesheet";
         }
+        timesheet.setStage("edit");
+        timesheetRepository.save(timesheet);
         return "timesheetform";
     }
 
