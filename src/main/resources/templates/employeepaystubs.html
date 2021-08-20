@@ -9,6 +9,26 @@
     <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <h2 class="d-flex justify-content-center"> Your Paystubs</h2>
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Paystub</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr th:each="timesheet:${timesheets}">
+            <td th:inline="text"><a th:href="@{/paystub/{id}(id=${timesheet.id})}">View Paystub</a></td>
+            <td th:inline="text">[[${timesheet.date}]]</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

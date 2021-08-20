@@ -84,6 +84,7 @@ public class HomeController {
     }
 
 
+
     @PostMapping("/savetimesheet")
     public String saveTimesheet(@ModelAttribute Timesheet timesheet, Model model, Principal principal) {
 
@@ -202,9 +203,18 @@ public class HomeController {
         return "profile";
     }
 
-//    @RequestMapping("/viewtimesheets") {
-//
-//    }
+    @RequestMapping("/viewtimesheets")
+    public String viewTimesheets(Model model, Principal principal) {
+        String username = principal.getName();
+        User employee = userRepository.findByUsername(username);
+
+        model.addAttribute("employee", employee);
+
+        model.addAttribute("timesheets", timesheetRepository.findAllByEmployee(employee));
+
+        return "employeetimesheets";
+    }
+
 
 
     @RequestMapping("/secure")
@@ -251,6 +261,19 @@ public class HomeController {
         return "redirect:/login";
     }
 
+    @RequestMapping("viewpaystubs")
+    public String viewAllPaystubs(Model model) {
+        model.addAttribute("timesheets", timesheetRepository.findAllByStage("approved"));
+
+        return "employeepaystubs";
+    }
+
+    @RequestMapping("/paystub")
+    public String viewPaystub(@PathVariable("id") long id, Model model) {
+        model.addAttribute("timesheet", timesheetRepository.findById(id));
+        return "paystub";
+    }
+
     @RequestMapping("/viewall")
     public String viewAll(Model model) {
         model.addAttribute("timesheets", timesheetRepository.findAll());
@@ -258,9 +281,19 @@ public class HomeController {
     }
     @RequestMapping("/viewpending")
     public String viewPending(Model model) {
+//        LocalDate date = LocalDate.now();
+//        date = date.minusYears(2);
+//        model.addAttribute("timesheets", timesheetRepository.findAllByDateBefore(date));
         model.addAttribute("timesheets", timesheetRepository.findAllByStage("pending approval"));
-
         return "queuepending";
+    }
+
+    @RequestMapping("/archives")
+    public String archives(Model model) {
+        LocalDate date = LocalDate.now();
+        date = date.minusYears(2);
+        model.addAttribute("timesheets", timesheetRepository.findAllByDateBefore(date));
+        return "archives";
     }
 
 }
