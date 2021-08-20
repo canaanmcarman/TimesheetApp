@@ -261,16 +261,16 @@ public class HomeController {
         return "redirect:/login";
     }
 
-    @RequestMapping("viewpaystubs")
+    @RequestMapping("/viewpaystubs")
     public String viewAllPaystubs(Model model) {
         model.addAttribute("timesheets", timesheetRepository.findAllByStage("approved"));
 
         return "employeepaystubs";
     }
 
-    @RequestMapping("/paystub")
+    @RequestMapping("/paystub/{id}")
     public String viewPaystub(@PathVariable("id") long id, Model model) {
-        model.addAttribute("timesheet", timesheetRepository.findById(id));
+        model.addAttribute("timesheet", timesheetRepository.findById(id).get());
         return "paystub";
     }
 
