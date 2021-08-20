@@ -8,6 +8,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+<div th:replace="base::nav"></div>
 <div class="container">
     <h4>New User Registration</h4>
     <form autocomplete="off" th:action="@{/processregister}" th:object="${user}"    method="post">

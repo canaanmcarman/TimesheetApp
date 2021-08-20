@@ -132,7 +132,7 @@ public class HomeController {
         //ruth changes
 
 //        String username = principal.getName();
-        String header = " header ....";
+        String header = "Timesheet Approved";
         User employee = timesheet.getEmployee();
         String emailEmployee = employee.getEmail();
         //for employee
@@ -146,7 +146,7 @@ public class HomeController {
 
         // send user a paystub
 
-        return "paystub";
+        return "redirect:/viewpending";
 
     }
 
@@ -157,7 +157,7 @@ public class HomeController {
         model.addAttribute("timesheet", timesheet);
         timesheetRepository.save(timesheet);
 
-        String header = " header ....";
+        String header = "Timesheet Rejected";
         User employee = timesheet.getEmployee();
         String emailEmployee = employee.getEmail();
         //for employee
@@ -165,7 +165,7 @@ public class HomeController {
                 "and send again";
         emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
 
-        return "redirect:/viewall";
+        return "redirect:/viewpending";
     }
 
     @RequestMapping("/timesheet/{id}")
