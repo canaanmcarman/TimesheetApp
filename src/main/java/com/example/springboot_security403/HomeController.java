@@ -188,6 +188,12 @@ public class HomeController {
         return "timesheetform";
     }
 
+    @RequestMapping("/actionlog")
+    public String actionLogs(Model model) {
+        model.addAttribute("actions", actionRepository.findAll());
+        return "logs";
+    }
+
 
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model){

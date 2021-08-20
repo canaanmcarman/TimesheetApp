@@ -29,9 +29,6 @@
                         <td th:inline="text">[[${action.employee.firstName}]] [[${action.employee.lastName}]]</td>
                         <td th:text="${action.actionName}"></td>
                         <td th:text="${action.date}"></td>
-                        <td>
-                            <a th:href="@{/timesheet/{id}(id=${timesheet.id})}"></a>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
