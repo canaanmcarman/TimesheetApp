@@ -161,8 +161,7 @@ public class HomeController {
         User employee = timesheet.getEmployee();
         String emailEmployee = employee.getEmail();
         //for employee
-        String contentForEmployee = "Hi " + timesheet.getEmployee().getFirstName() + ", your timesheet was rejected. Please check that you inputted the correct hours" +
-                "and send again";
+        String contentForEmployee = "Hi " + timesheet.getEmployee().getFirstName() + ", your timesheet was rejected. Please check that you inputted the correct hours and send again" + "\n" + "\n";
         emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
 
         return "redirect:/viewpending";
