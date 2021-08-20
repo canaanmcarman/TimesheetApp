@@ -178,7 +178,7 @@ public class HomeController {
     public String editTimesheet(@PathVariable("id") long id, Model model) {
         Timesheet timesheet = timesheetRepository.findById(id).get();
         model.addAttribute("timesheet", timesheet);
-        if (timesheet.getStage().equals("approved")) {
+        if (timesheet.getStage().equals("approved") || timesheet.getStage().equals("pending approval") ) {
             String message = "You have already submitted this timesheet for approval. If rejected by employer you can edit again";
             model.addAttribute("message", message);
             return "timesheet";
