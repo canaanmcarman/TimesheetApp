@@ -10,79 +10,83 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header-center">
-                    <h4 class="title" align="center">Pay Stub</h4>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default panel-table">
+                <div class="row">
+                    <div class="ol col-xs-6">
+                        <h4 class="text-middle" align="center">Pay Stub</h4>
+                    </div>
+                    <div class="col col-xs-6 text-left">
+                        <strong>Employee Name:</strong>[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]
+                        <br>
+                        <strong>Date:</strong>[[${timesheet.date}]]
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Earnings</th>
+                                <th scope="col">Rate</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>
+                                    <ul>Regular</ul>
+                                </th>
+                                <td>$20</td>
+                                <td th:inline="text">[[${timesheet.regular}]]</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <ul>Overtime</ul>
+                                </th>
+                                <td>$30</td>
+                                <td th:inline="text">[[${timesheet.regularOvertime}]]</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <ul>Holiday Worked</ul>
+                                </th>
+                                <td>$30</td>
+                                <td th:inline="text">[[${timesheet.holidayWorked}]]</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <ul>Holiday Overtime</ul>
+                                </th>
+                                <td>$30</td>
+                                <td th:inline="text">[[${timesheet.holidayOvertime}]]</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <ul>Paid Leave</ul>
+                                </th>
+                                <td>$20</td>
+                                <td th:inline="text">[[${timesheet.annualLeave}]]</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">Gross pay</th>
+                                <td th:inline="text">[[${timesheet.weekTotal}]]</td>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Deductions</th>
+                            </tr>
+                            <tr>
+                                <th colspan ="2">
+                                    <ul>Federal income tax</ul>
+                                </th>
+                                <td>$</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">NetPay</th>
+                                <td>$</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div>
-                    <strong>Employee Name:</strong>[[${timesheet.employee.firstName}]] [[${timesheet.employee.lastName}]]
-                    <br>
-                    <strong>Date:</strong>[[${timesheet.date}]]
-                </div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Earnings</th>
-                        <th scope="col">Rate</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <li>Regular</li>
-                        </td>
-                        <td>$20</td>
-                        <td th:inline="text">[[${timesheet.regular}]]</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>Overtime</li>
-                        </td>
-                        <td>$30</td>
-                        <td th:inline="text">[[${timesheet.regularOvertime}]]</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>Holiday Worked</li>
-                        </td>
-                        <td>$30</td>
-                        <td th:inline="text">[[${timesheet.holidayWorked}]]</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>Holiday Overtime</li>
-                        </td>
-                        <td>$30</td>
-                        <td th:inline="text">[[${timesheet.holidayOvertime}]]</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>Paid Leave</li>
-                        </td>
-                        <td>$20</td>
-                        <td th:inline="text">[[${timesheet.annualLeave}]]</td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Gross pay</th>
-                        <td th:inline="text">[[${timesheet.weekTotal}]]</td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Deductions</th>
-                    </tr>
-                    <tr>
-                        <td colspan ="2">
-                            <li>Federal income tax</li>
-                        </td>
-                        <td>$</td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">NetPay</th>
-                        <td>$</td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

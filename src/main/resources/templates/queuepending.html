@@ -12,7 +12,6 @@
     <div class="card-body text-center">
         <h5 class="title" align="center">Pending Timesheet</h5>
     </div>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names" title="Type in a name">
     <table class="table">
         <thread>
             <tr>
@@ -32,8 +31,8 @@
             <td th:inline="text">[[${timesheet.stage}]]</td>
         </tr>
         <div sec:authorize="hasRole('')">
-            <a th:href="@{/approvetimesheet/{id}(id=${timesheet.id})}"></a>
-            <a th:href="@{/rejecttimesheet/{id}(id=${timesheet.id})}"></a>
+            <a th:href="@{/approve/{id}(id=${timesheet.id})}"></a>
+            <a th:href="@{/reject/{id}(id=${timesheet.id})}"></a>
         </div>
         </tbody>
     </table>
