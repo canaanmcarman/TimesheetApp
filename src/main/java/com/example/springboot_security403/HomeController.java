@@ -98,12 +98,13 @@ public class HomeController {
         timesheetRepository.save(timesheet);
 
         //ruth changes
-        String username = principal.getName();
+
+//        String username = principal.getName();
         String header = " header ....";
         User employee = timesheet.getEmployee();
         String emailEmployee = employee.getEmail();
         //for employee
-        String contentForEmployee = "Hi " + username + " your timesheet is just approved" + "\n" + "\n" + "\n"
+        String contentForEmployee = "Hi " + timesheet.getEmployee().getFirstName() + ", your timesheet has been approved!" + "\n" + "\n" + "\n"
                 + "Employee Name: " + timesheet.getEmployee().getFirstName() + " " + timesheet.getEmployee().getLastName() + "\n"
                 + "Gross Earning: " + timesheet.getWeekTotal() + "\n"
                 + "Hours Worked: " + timesheet.getRegular() + "\n";
