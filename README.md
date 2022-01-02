@@ -13,7 +13,7 @@ Feel free to register your own account as well
 -Java <br>
 -HTML<br>
 -CSS <br>
--Bootstrap
+-Bootstrap<br>
 -Thymeleaf<br>
 -Java Spring Boot<br>
 -Java Mail API<br>
