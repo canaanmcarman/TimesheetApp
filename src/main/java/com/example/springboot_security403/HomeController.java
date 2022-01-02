@@ -26,11 +26,11 @@ public class HomeController {
     RoleRepository roleRepository;
 
     @Autowired
-    EmailService emailService;
+    EmailSenderService mailService;
 
     @RequestMapping("/")
     public String index() {
-        return "index";
+        return "redirect:/login";
     }
 
     @GetMapping("/addtimesheet")
@@ -64,8 +64,10 @@ public class HomeController {
         String contentForEmployee = "Hi," + username + " your timesheet was submitted and is pending approval";
         User employee = timesheet.getEmployee();
         String emailEmployee = employee.getEmail();
-        emailService.sendSimpleEmail(contentForAdmin, header, emailAdmin);
-        emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
+//        emailService.sendSimpleEmail(contentForAdmin, header, emailAdmin);
+//        emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
+        mailService.sendSimpleEmail(contentForAdmin, header, emailAdmin);
+        mailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
         timesheetRepository.save(timesheet);
 //        emailService.SendTemplatedEmail("Employee submitted timesheet for approval");
         String message = "Submitted for approval! Check your email.";
@@ -143,7 +145,7 @@ public class HomeController {
                 + "Hours Worked: " + timesheet.getRegular() + "\n";
 //                + "Over Time worked: "+ timesheet.getOvertimeHours();
 
-        emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
+        mailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
 
         // send user a paystub
 
@@ -163,7 +165,7 @@ public class HomeController {
         String emailEmployee = employee.getEmail();
         //for employee
         String contentForEmployee = "Hi " + timesheet.getEmployee().getFirstName() + ", your timesheet was rejected. Please check that you inputted the correct hours and send again" + "\n" + "\n";
-        emailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
+        mailService.sendSimpleEmail(contentForEmployee, header, emailEmployee);
 
         return "redirect:/viewpending";
     }

@@ -1,5 +1,6 @@
 body {
-    background-image: url("https://wallpaperaccess.com/full/1510383.jpg");
+    /*background-image: url("https://wallpaperaccess.com/full/1510383.jpg");*/
+    background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/08/Travelling-the-world-photos.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -10,4 +11,11 @@ body {
     background-color: white;
     margin-top: 25px;
     padding: 25px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
